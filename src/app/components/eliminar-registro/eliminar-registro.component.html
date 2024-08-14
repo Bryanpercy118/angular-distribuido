@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>Eliminar Registro</h2>
+    <div class="form-group">
+      <label for="id">ID del Registro</label>
+      <input
+        id="id"
+        [(ngModel)]="id"
+        type="number"
+        class="form-control"
+        placeholder="Ingresa el ID del registro"
+      />
+    </div>
+  
+    <button class="btn btn-danger" (click)="eliminarRegistro()">Eliminar</button>
+  </div>
+  

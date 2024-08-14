@@ -1,0 +1,27 @@
+<div class="container">
+    <h2>Crear Registro</h2>
+    <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          id="nombre"
+          formControlName="nombre"
+          class="form-control"
+          placeholder="Ingresa el nombre"
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea
+          id="descripcion"
+          formControlName="descripcion"
+          class="form-control"
+          placeholder="Ingresa la descripción"
+        ></textarea>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="!registroForm.valid">Crear</button>
+    </form>
+  </div>
+  
