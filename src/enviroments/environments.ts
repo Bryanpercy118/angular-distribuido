@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
-    apiUrl: 'http://backend-server/'
-  };
-  
+  production: false,
+  apiUrlCrear: 'https://api.nuevobackend.com/crear',
+  apiUrlBorrar: 'https://api.otrobackend.com/borrar'
+};
