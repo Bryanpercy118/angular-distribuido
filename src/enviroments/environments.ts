@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  apiUrlCrear: 'https://api.nuevobackend.com/crear',
-  apiUrlBorrar: 'https://api.otrobackend.com/borrar'
+  apiUrlCrear: 'http://localhost:3001/registros',  // Cambiar al puerto 3001
+  apiUrlEliminar: 'http://localhost:3001/registros' // Cambiar al puerto 3001
 };

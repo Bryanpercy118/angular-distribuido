@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Registro } from '../../services/registro.service';
+import { RegistroService, Registro } from '../../services/registro.service';
 
 @Component({
   selector: 'app-crear-registro',
@@ -9,9 +9,8 @@ import { Registro } from '../../services/registro.service';
 export class CrearRegistroComponent {
   registroForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private registroService: RegistroService) {
     this.registroForm = this.fb.group({
-      id: [null, Validators.required],
       tipoIdentificacion: ['', Validators.required],
       numeroIdentificacion: ['', Validators.required],
       nombre1: ['', Validators.required],
@@ -25,18 +24,22 @@ export class CrearRegistroComponent {
 
   onSubmit() {
     if (this.registroForm.valid) {
-      const nuevoRegistro: Registro = this.registroForm.value;
+      const nuevoRegistro = this.registroForm.value;
 
-      // Guardar el registro en localStorage
-      const registros = JSON.parse(localStorage.getItem('registros') || '[]');
-      registros.push(nuevoRegistro);
-      localStorage.setItem('registros', JSON.stringify(registros));
+      // Enviar el registro al backend a través del servicio
+      this.registroService.crearRegistro(nuevoRegistro).subscribe(
+        (response) => {
+          console.log('Registro guardado en el backend:', response);
+          alert('Registro guardado exitosamente.');
 
-      // Mostrar popup de confirmación
-      alert('Registro guardado exitosamente.');
-
-      // Limpiar los campos del formulario
-      this.registroForm.reset();
+          // Limpiar los campos del formulario
+          this.registroForm.reset();
+        },
+        (error) => {
+          console.error('Error al guardar el registro:', error);
+          alert('Hubo un error al guardar el registro.');
+        }
+      );
     }
   }
 }

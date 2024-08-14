@@ -20,17 +20,15 @@ export interface Registro {
 })
 export class RegistroService {
   private apiUrlCrear = environment.apiUrlCrear;
-  private apiUrlBorrar = environment.apiUrlBorrar;
+  private apiUrlEliminar = environment.apiUrlEliminar;
 
   constructor(private http: HttpClient) {}
 
-  // Método para crear un registro
-  crearRegistro(data: Registro): Observable<any> {
-    return this.http.post(`${this.apiUrlCrear}`, data);
+  crearRegistro(data: Omit<Registro, 'id'>): Observable<Registro> {
+    return this.http.post<Registro>(this.apiUrlCrear, data);
   }
 
-  // Método para borrar un registro
   eliminarRegistro(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrlBorrar}/${id}`);
+    return this.http.delete(`${this.apiUrlEliminar}/${id}`);
   }
 }
