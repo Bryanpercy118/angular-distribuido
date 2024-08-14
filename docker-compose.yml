@@ -1,0 +1,22 @@
+version: '3'
+services:
+  angular-app:
+    build: .
+    ports:
+      - "3000:80"
+    networks:
+      - mynetwork
+    depends_on:
+      - backend-node
+
+  backend-node:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
