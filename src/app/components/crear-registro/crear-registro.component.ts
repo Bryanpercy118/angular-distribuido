@@ -32,7 +32,11 @@ export class CrearRegistroComponent {
       registros.push(nuevoRegistro);
       localStorage.setItem('registros', JSON.stringify(registros));
 
-      console.log('Registro guardado en localStorage:', nuevoRegistro);
+      // Mostrar popup de confirmación
+      alert('Registro guardado exitosamente.');
+
+      // Limpiar los campos del formulario
+      this.registroForm.reset();
     }
   }
 }
