@@ -1,27 +1,117 @@
-<div class="container">
-    <h2>Crear Registro</h2>
+<div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Crear Registro</h2>
     <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
+      
+      <!-- ID -->
+      <div class="mb-4">
+        <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
         <input
-          id="nombre"
-          formControlName="nombre"
-          class="form-control"
-          placeholder="Ingresa el nombre"
+          id="id"
+          formControlName="id"
+          type="number"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el ID"
         />
       </div>
   
-      <div class="form-group">
-        <label for="descripcion">Descripción</label>
-        <textarea
-          id="descripcion"
-          formControlName="descripcion"
-          class="form-control"
-          placeholder="Ingresa la descripción"
-        ></textarea>
+      <!-- Tipo Identificación -->
+      <div class="mb-4">
+        <label for="tipoIdentificacion" class="block text-sm font-medium text-gray-700">Tipo de Identificación</label>
+        <input
+          id="tipoIdentificacion"
+          formControlName="tipoIdentificacion"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el tipo de identificación"
+        />
       </div>
   
-      <button type="submit" class="btn btn-primary" [disabled]="!registroForm.valid">Crear</button>
+      <!-- Número de Identificación -->
+      <div class="mb-4">
+        <label for="numeroIdentificacion" class="block text-sm font-medium text-gray-700">Número de Identificación</label>
+        <input
+          id="numeroIdentificacion"
+          formControlName="numeroIdentificacion"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el número de identificación"
+        />
+      </div>
+  
+      <!-- Nombre 1 -->
+      <div class="mb-4">
+        <label for="nombre1" class="block text-sm font-medium text-gray-700">Primer Nombre</label>
+        <input
+          id="nombre1"
+          formControlName="nombre1"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el primer nombre"
+        />
+      </div>
+  
+      <!-- Nombre 2 -->
+      <div class="mb-4">
+        <label for="nombre2" class="block text-sm font-medium text-gray-700">Segundo Nombre</label>
+        <input
+          id="nombre2"
+          formControlName="nombre2"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el segundo nombre (opcional)"
+        />
+      </div>
+  
+      <!-- Apellido 1 -->
+      <div class="mb-4">
+        <label for="apellido1" class="block text-sm font-medium text-gray-700">Primer Apellido</label>
+        <input
+          id="apellido1"
+          formControlName="apellido1"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el primer apellido"
+        />
+      </div>
+  
+      <!-- Apellido 2 -->
+      <div class="mb-4">
+        <label for="apellido2" class="block text-sm font-medium text-gray-700">Segundo Apellido</label>
+        <input
+          id="apellido2"
+          formControlName="apellido2"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          placeholder="Ingresa el segundo apellido (opcional)"
+        />
+      </div>
+  
+      <!-- Sexo -->
+      <div class="mb-4">
+        <label for="sexo" class="block text-sm font-medium text-gray-700">Sexo</label>
+        <select
+          id="sexo"
+          formControlName="sexo"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option value="">Selecciona</option>
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+        </select>
+      </div>
+  
+      <!-- Fecha de Nacimiento -->
+      <div class="mb-6">
+        <label for="fechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de Nacimiento</label>
+        <input
+          id="fechaNacimiento"
+          formControlName="fechaNacimiento"
+          type="date"
+          class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+  
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        [disabled]="!registroForm.valid"
+      >
+        Crear
+      </button>
     </form>
   </div>
   

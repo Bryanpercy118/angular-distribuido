@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegistroService } from '../../services/registro.service';
+import { Registro } from '../../services/registro.service';
 
 @Component({
   selector: 'app-crear-registro',
@@ -9,26 +9,30 @@ import { RegistroService } from '../../services/registro.service';
 export class CrearRegistroComponent {
   registroForm: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private registroService: RegistroService
-  ) {
+  constructor(private fb: FormBuilder) {
     this.registroForm = this.fb.group({
-      nombre: ['', Validators.required],
-      descripcion: ['', Validators.required]
+      id: [null, Validators.required],
+      tipoIdentificacion: ['', Validators.required],
+      numeroIdentificacion: ['', Validators.required],
+      nombre1: ['', Validators.required],
+      nombre2: [''],
+      apellido1: ['', Validators.required],
+      apellido2: [''],
+      sexo: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
     });
   }
 
   onSubmit() {
     if (this.registroForm.valid) {
-      this.registroService.crearRegistro(this.registroForm.value).subscribe(
-        (response) => {
-          console.log('Registro creado:', response);
-        },
-        (error) => {
-          console.error('Error al crear registro:', error);
-        }
-      );
+      const nuevoRegistro: Registro = this.registroForm.value;
+
+      // Guardar el registro en localStorage
+      const registros = JSON.parse(localStorage.getItem('registros') || '[]');
+      registros.push(nuevoRegistro);
+      localStorage.setItem('registros', JSON.stringify(registros));
+
+      console.log('Registro guardado en localStorage:', nuevoRegistro);
     }
   }
 }
