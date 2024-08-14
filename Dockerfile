@@ -1,29 +1,32 @@
-# Utiliza una imagen de Node.js para compilar la aplicación
-FROM node:16 AS build
+# Utiliza una imagen base de Node.js 20.15.1 para compilar la aplicación
+FROM node:20.15.1 AS build
 
-# Establece el directorio de trabajo en el contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos package.json y package-lock.json
+# Copia los archivos de package.json y package-lock.json
 COPY package*.json ./
 
-# Instala las dependencias de la aplicación
+# Instala las dependencias
 RUN npm install
 
-# Copia el código fuente de la aplicación al contenedor
+# Copia el resto de los archivos de la aplicación
 COPY . .
 
-# Compila la aplicación para producción
+# Construye la aplicación Angular para producción
 RUN npm run build --prod
 
-# Utiliza una imagen de Nginx para servir la aplicación
+# Utiliza una imagen base de Nginx para servir la aplicación
 FROM nginx:alpine
 
-# Copia los archivos generados en la carpeta dist al directorio html de Nginx
-COPY --from=build /app/dist/angular-distribuido /usr/share/nginx/html
+# Copia los archivos generados en la etapa de construcción al directorio de Nginx
+COPY --from=build /app/dist/ /usr/share/nginx/html
 
-# Exponer el puerto 80 para que la aplicación sea accesible
+# Copia un archivo de configuración personalizado para Nginx (opcional)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expone el puerto 80
 EXPOSE 80
 
-# Inicia el servidor Nginx
+# Comando para iniciar Nginx
 CMD ["nginx", "-g", "daemon off;"]
