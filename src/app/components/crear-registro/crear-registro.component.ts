@@ -11,14 +11,14 @@ export class CrearRegistroComponent {
 
   constructor(private fb: FormBuilder, private registroService: RegistroService) {
     this.registroForm = this.fb.group({
-      tipoIdentificacion: ['', Validators.required],
-      numeroIdentificacion: ['', Validators.required],
+      tipo_identificacion: ['', Validators.required],
+      numero_identificacion: ['', Validators.required],
       nombre1: ['', Validators.required],
       nombre2: [''],
       apellido1: ['', Validators.required],
       apellido2: [''],
       sexo: ['', Validators.required],
-      fechaNacimiento: ['', Validators.required],
+      fecha_nacimiento: ['', Validators.required],
     });
   }
 
